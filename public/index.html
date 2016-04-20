@@ -162,7 +162,14 @@ function saveImage() {
 
       // set canvasImg image src to dataURL
       // so it can be saved as an image
-      document.getElementById('content').src = "https://www.hallaminternet.com/assets/URL-tagging-image.png";
+
+      var img = document.getElementById("canvasImg");
+      img.style.textAlign = "right";
+      img.style.display = "inline";
+      //img.src = "https://www.hallaminternet.com/assets/URL-tagging-image.png";  
+      img.src = dataURL;
+
+      document.getElementById('content').appendChild(img); 
 }
         
 function selectColor(el){
@@ -243,7 +250,6 @@ var drawMouse = function() {
   </script>
 </head>
 <body>
-  <img id="canvasImg" alt="Right click to save me!">
 
 <div id="page">
     <div class="header">
@@ -252,6 +258,7 @@ var drawMouse = function() {
         <div class="title">Lines</div>
     </div>
     <div id="content"><p style="text-align:center">Loading Canvas...</p></div>
+    <img id="canvasImg" style="display:none">
     <div class="footer">
     <div class="palette-case">
       <div class="palette-box">
