@@ -165,6 +165,17 @@ function saveImage() {
       document.getElementById('canvasImg').src = "https://www.hallaminternet.com/assets/URL-tagging-image.png";
 }
         
+function selectColor(el){
+    for(var i=0;i<document.getElementsByClassName("palette").length;i++){
+        document.getElementsByClassName("palette")[i].style.borderColor = "#777";
+        document.getElementsByClassName("palette")[i].style.borderStyle = "solid";
+    }
+    el.style.borderColor = "#fff";
+    el.style.borderStyle = "dashed";
+    color = window.getComputedStyle(el).backgroundColor;
+    ctx.beginPath();
+    ctx.strokeStyle = color;
+}
 // prototype to start drawing on touch using canvas moveTo and lineTo
 var drawTouch = function() {
   var start = function(e) {
@@ -241,6 +252,26 @@ var drawMouse = function() {
         <div class="title">Lines</div>
     </div>
     <div id="content"><p style="text-align:center">Loading Canvas...</p></div>
+    <div class="footer">
+    <div class="palette-case">
+      <!--<div class="palette-box">
+      <!--  <div class="palette white" onclick="selectColor(this)"></div>-->
+      <!--</div>  -->
+      <!--<div class="palette-box">-->
+      <!--  <div class="palette red" onclick="selectColor(this)"></div>-->
+      <!--</div>-->
+      <!--<div class="palette-box">-->
+      <!--  <div class="palette blue" onclick="selectColor(this)"></div>-->
+      <!--</div>-->
+      <!--<div class="palette-box">-->
+      <!--  <div class="palette green" onclick="selectColor(this)"></div>-->
+      <!--</div>-->
+      <div class="palette-box">
+        <div class="palette black" onclick="selectColor(this)"></div>
+      </div>    
+      <div style="clear:both"></div>
+    </div>
+    </div>
 </div> 
 </body>
 </html>
