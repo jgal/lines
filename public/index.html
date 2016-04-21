@@ -71,6 +71,24 @@ body {
     background-color: #aaa;
     box-shadow: 0 0 1px 1px #444,inset 0 1px 0 0 #ccc;   
 }
+
+.container {
+    display: inline-block;
+    position: relative;
+    width: 30%;
+}
+.dummy {
+    padding-top: 100%;
+}
+.element {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #6666ff;
+}
+
 #content{
     position: absolute;
     top: 44px;
@@ -90,7 +108,7 @@ body {
     background-color:#ff99ff;
 }
 
-#canvasImg{
+.canvasImg{
     position: absolute;
     overflow:hidden;
     background-color:#ddd;
@@ -136,6 +154,7 @@ body {
   <script type="text/javascript">
   
 var ctx, color = "#000";  
+var num = 1;
 document.addEventListener( "DOMContentLoaded", function(){
   // setup a new canvas for drawing wait for device init
     setTimeout(function(){
@@ -167,14 +186,20 @@ function saveImage() {
 
       // set canvasImg image src to dataURL
       // so it can be saved as an image
-
-      var img = document.getElementById("canvasImg");
+      var imgName = "img" + num;
+      var img = document.getElementById(imgName);
       img.style.textAlign = "right";
       img.style.display = "inline";
       //img.src = "https://www.hallaminternet.com/assets/URL-tagging-image.png";  
       img.src = dataURL;
+      img.style.width = "200px";
 
-      document.getElementById('content2').appendChild(img); 
+      document.getElementById(num).appendChild(img); 
+      if(num === 9) {num = 1;}
+      else {
+        num++;
+      }
+
 }
         
 function selectColor(el){
@@ -264,7 +289,51 @@ var drawMouse = function() {
     </div>
     <div id="content"><p style="text-align:left">Loading Canvas...</p></div>
     <div id="content2">
-             <img id="canvasImg" style="display:none">
+        <div id="firstcontainer" class="container">
+          <div class="dummy"></div>
+          <div id="1" class="element"></div>
+        </div>
+        <div class="container">
+          <div class="dummy"></div>
+          <div id="2" class="element"></div>
+        </div>
+        <div class="container">
+          <div class="dummy"></div>
+          <div id="3" class="element"></div>
+        </div>
+        <div class="container">
+          <div class="dummy"></div>
+          <div id="4" class="element"></div>
+        </div>
+        <div class="container">
+          <div class="dummy"></div>
+          <div id="5" class="element"></div>
+        </div>
+        <div class="container">
+          <div class="dummy"></div>
+          <div id="6" class="element"></div>
+        </div>
+        <div class="container">
+          <div class="dummy"></div>
+          <div id="7" class="element"></div>
+        </div>
+        <div class="container">
+          <div class="dummy"></div>
+          <div id="8" class="element"></div>
+        </div>
+        <div class="container">
+          <div class="dummy"></div>
+          <div id="9" class="element"></div>
+        </div>
+        <img id="img1" class="canvasImg" style="display:none">
+        <img id="img2" class="canvasImg" style="display:none">
+        <img id="img3" class="canvasImg" style="display:none">
+        <img id="img4" class="canvasImg" style="display:none">
+        <img id="img5" class="canvasImg" style="display:none">
+        <img id="img6" class="canvasImg" style="display:none">
+        <img id="img7" class="canvasImg" style="display:none">
+        <img id="img8" class="canvasImg" style="display:none">
+        <img id="img9" class="canvasImg" style="display:none">
     </div>
     <div class="footer">
     <div class="palette-case">
