@@ -22,21 +22,16 @@ app.use(express.static(__dirname + '/public'));
 var appEnv = cfenv.getAppEnv();
 
 //connect to the database
-var ibmdb = require('ibm_db'); 
-var connstring = "DATABASE=SQL Database-t2;HOSTNAME=75.126.155.153;UID=user04848;PWD=hjC8gSiSTzR1;PORT=50000;PROTOCOL=TCPIP";
+/*var ibmdb = require('ibm_db'), 
+ connstring = "DATABASE=SQL Database-t2;HOSTNAME=75.126.155.153;UID=user04848;PWD=hjC8gSiSTzR1;PORT=50000;PROTOCOL=TCPIP;";
 ibmdb.open(connstring, function(err,conn) {
-	if (err) return console.log(err);
 	//collect the collaborations from the database
-	var query = 'select collaboration, position, picture from Images ORDER BY collaboration, position';
-	conn.query(query, function (err, data) {
-		if (err) console.log(err);
-		else console.log(data);
-
+	var query = "select collaboration, position, picture from Images ORDER BY collaboration, position";
+	var rows = conn.querySync(query);
+	console.log(rows);
 		conn.close(function() {
 			console.log('done');
-		});
-	});
-});
+});*/
 
 //parse the results of the query
 
