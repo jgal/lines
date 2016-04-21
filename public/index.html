@@ -80,6 +80,15 @@ body {
     overflow:hidden;
     background-color:#00FFFF;
 }
+#content2{
+    position: absolute;
+    width: 50%;
+    top: 44px;
+    right: 0px;
+    bottom: 46px;
+    overflow:hidden;
+    background-color:#ff99ff;
+}
 
 #canvasImg{
     position: absolute;
@@ -169,7 +178,7 @@ function saveImage() {
       //img.src = "https://www.hallaminternet.com/assets/URL-tagging-image.png";  
       img.src = dataURL;
 
-      document.getElementById('content').appendChild(img); 
+      document.getElementById('content2').appendChild(img); 
 }
         
 function selectColor(el){
@@ -258,7 +267,9 @@ var drawMouse = function() {
         <div class="title">Lines</div>
     </div>
     <div id="content"><p style="text-align:center">Loading Canvas...</p></div>
-    <img id="canvasImg" style="display:none">
+    <div id="content2">
+             <img id="canvasImg" style="display:none">
+    </div>
     <div class="footer">
     <div class="palette-case">
       <div class="palette-box">
