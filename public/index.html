@@ -114,6 +114,7 @@ body {
     background-color:#ddd;
     text-align: right;
     color: #eee;
+    width: 100%;
 }
 
 #canvas{
@@ -192,9 +193,9 @@ function saveImage() {
       img.style.display = "inline";
       //img.src = "https://www.hallaminternet.com/assets/URL-tagging-image.png";  
       img.src = dataURL;
-      img.style.width = "200px";
 
       document.getElementById(num).appendChild(img); 
+
       if(num === 9) {num = 1;}
       else {
         num++;
