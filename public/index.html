@@ -23,7 +23,7 @@ body {
     -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
         
-.header, .footer{
+.header {
     position: absolute;
     background-color: #222;
     text-align: center;
@@ -35,13 +35,7 @@ body {
     height: 32px;
     padding:6px;
 }
-.footer {
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
-    height: 42px;
-    padding:2px;    
-}
+
 .title {
     width: auto;
     line-height: 32px;
@@ -71,26 +65,50 @@ body {
     background-color: #aaa;
     box-shadow: 0 0 1px 1px #444,inset 0 1px 0 0 #ccc;   
 }
+
+.container {
+    display: inline-block;
+    position: relative;
+    width: 30%;
+}
+.dummy {
+    padding-top: 100%;
+}
+.element {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #6666ff;
+}
+
 #content{
     position: absolute;
     top: 44px;
     left: 0px;
     right: 0px;
-    bottom: 46px;
+    bottom: 0px;
     overflow:hidden;
     background-color:#00FFFF;
 }
-
-#canvasImg{
+#content2{
     position: absolute;
+    width: 50%;
     top: 44px;
-    left: 0px;
     right: 0px;
-    bottom: 46px;
+    bottom: 0px;
+    overflow:hidden;
+    background-color:#ff99ff;
+}
+
+.canvasImg{
+    position: absolute;
     overflow:hidden;
     background-color:#ddd;
     text-align: right;
     color: #eee;
+    width: 100%;
 }
 
 #canvas{
@@ -131,6 +149,7 @@ body {
   <script type="text/javascript">
   
 var ctx, color = "#000";  
+var num = 1;
 document.addEventListener( "DOMContentLoaded", function(){
   // setup a new canvas for drawing wait for device init
     setTimeout(function(){
@@ -162,27 +181,22 @@ function saveImage() {
 
       // set canvasImg image src to dataURL
       // so it can be saved as an image
-
-      var img = document.getElementById("canvasImg");
+      var imgName = "img" + num;
+      var img = document.getElementById(imgName);
       img.style.textAlign = "right";
       img.style.display = "inline";
       //img.src = "https://www.hallaminternet.com/assets/URL-tagging-image.png";  
       img.src = dataURL;
 
-      document.getElementById('content').appendChild(img); 
+      document.getElementById(num).appendChild(img); 
+
+      if(num === 9) {num = 1;}
+      else {
+        num++;
+      }
+
 }
-        
-function selectColor(el){
-    for(var i=0;i<document.getElementsByClassName("palette").length;i++){
-        document.getElementsByClassName("palette")[i].style.borderColor = "#777";
-        document.getElementsByClassName("palette")[i].style.borderStyle = "solid";
-    }
-    el.style.borderColor = "#fff";
-    el.style.borderStyle = "dashed";
-    color = window.getComputedStyle(el).backgroundColor;
-    ctx.beginPath();
-    ctx.strokeStyle = color;
-}
+
 // prototype to start drawing on touch using canvas moveTo and lineTo
 var drawTouch = function() {
   var start = function(e) {
@@ -257,15 +271,53 @@ var drawMouse = function() {
     <a id="save" class="navbtn" onclick="saveImage()">Save</a>
         <div class="title">Lines</div>
     </div>
-    <div id="content"><p style="text-align:center">Loading Canvas...</p></div>
-    <img id="canvasImg" style="display:none">
-    <div class="footer">
-    <div class="palette-case">
-      <div class="palette-box">
-        <div class="palette black" onclick="selectColor(this)"></div>
-      </div>    
-      <div style="clear:both"></div>
-    </div>
+    <div id="content"><p style="text-align:left">Loading Canvas...</p></div>
+    <div id="content2">
+        <div id="firstcontainer" class="container">
+          <div class="dummy"></div>
+          <div id="1" class="element"></div>
+        </div>
+        <div class="container">
+          <div class="dummy"></div>
+          <div id="2" class="element"></div>
+        </div>
+        <div class="container">
+          <div class="dummy"></div>
+          <div id="3" class="element"></div>
+        </div>
+        <div class="container">
+          <div class="dummy"></div>
+          <div id="4" class="element"></div>
+        </div>
+        <div class="container">
+          <div class="dummy"></div>
+          <div id="5" class="element"></div>
+        </div>
+        <div class="container">
+          <div class="dummy"></div>
+          <div id="6" class="element"></div>
+        </div>
+        <div class="container">
+          <div class="dummy"></div>
+          <div id="7" class="element"></div>
+        </div>
+        <div class="container">
+          <div class="dummy"></div>
+          <div id="8" class="element"></div>
+        </div>
+        <div class="container">
+          <div class="dummy"></div>
+          <div id="9" class="element"></div>
+        </div>
+        <img id="img1" class="canvasImg" style="display:none">
+        <img id="img2" class="canvasImg" style="display:none">
+        <img id="img3" class="canvasImg" style="display:none">
+        <img id="img4" class="canvasImg" style="display:none">
+        <img id="img5" class="canvasImg" style="display:none">
+        <img id="img6" class="canvasImg" style="display:none">
+        <img id="img7" class="canvasImg" style="display:none">
+        <img id="img8" class="canvasImg" style="display:none">
+        <img id="img9" class="canvasImg" style="display:none">
     </div>
 </div> 
 </body>
