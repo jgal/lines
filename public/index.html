@@ -23,7 +23,7 @@ body {
     -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
         
-.header, .footer{
+.header {
     position: absolute;
     background-color: #222;
     text-align: center;
@@ -35,13 +35,7 @@ body {
     height: 32px;
     padding:6px;
 }
-.footer {
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
-    height: 42px;
-    padding:2px;    
-}
+
 .title {
     width: auto;
     line-height: 32px;
@@ -94,7 +88,7 @@ body {
     top: 44px;
     left: 0px;
     right: 0px;
-    bottom: 46px;
+    bottom: 0px;
     overflow:hidden;
     background-color:#00FFFF;
 }
@@ -103,7 +97,7 @@ body {
     width: 50%;
     top: 44px;
     right: 0px;
-    bottom: 46px;
+    bottom: 0px;
     overflow:hidden;
     background-color:#ff99ff;
 }
@@ -202,18 +196,7 @@ function saveImage() {
       }
 
 }
-        
-function selectColor(el){
-    for(var i=0;i<document.getElementsByClassName("palette").length;i++){
-        document.getElementsByClassName("palette")[i].style.borderColor = "#777";
-        document.getElementsByClassName("palette")[i].style.borderStyle = "solid";
-    }
-    el.style.borderColor = "#fff";
-    el.style.borderStyle = "dashed";
-    color = window.getComputedStyle(el).backgroundColor;
-    ctx.beginPath();
-    ctx.strokeStyle = color;
-}
+
 // prototype to start drawing on touch using canvas moveTo and lineTo
 var drawTouch = function() {
   var start = function(e) {
@@ -335,14 +318,6 @@ var drawMouse = function() {
         <img id="img7" class="canvasImg" style="display:none">
         <img id="img8" class="canvasImg" style="display:none">
         <img id="img9" class="canvasImg" style="display:none">
-    </div>
-    <div class="footer">
-    <div class="palette-case">
-      <div class="palette-box">
-        <div class="palette black" onclick="selectColor(this)"></div>
-      </div>    
-      <div style="clear:both"></div>
-    </div>
     </div>
 </div> 
 </body>
