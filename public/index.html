@@ -227,7 +227,7 @@ function saveImage() {
       var ibmdb = require('ibm_db');
       var cn = "DRIVER={DB2};DATABASE=SQLDB;HOSTNAME=75.126.155.153;UID=user04848;PWD=hjC8gSiSTzR1;PORT=50000;PROTOCOL=TCPIP";
 	  ibmdb.open(cn,function(err,conn){
-  conn.prepare("insert into Images (collarboration, position, image) VALUES (?, ?, ?)", function (err, stmt) {
+  conn.prepare("insert into Images (collaboration, position, image) VALUES (?, ?, ?)", function (err, stmt) {
     if (err) {
       //could not prepare for some reason 
       console.log(err);
