@@ -17,12 +17,13 @@ var app = express();
 
 // serve the files out of ./public as our main files
 app.use(express.static(__dirname + '/public'));
+app.set('view engine', 'ejs');
 
 var title = "Loading canvas heree";
 
 //on the main page load index.html 
 app.get('/', function(request, response) {
-    response.render('index', {title: title});
+    response.render('index');
 });
 
 
