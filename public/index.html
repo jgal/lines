@@ -57,7 +57,8 @@ body {
     border: solid 1px #111;
     border-radius: 4px;
     background-color: #404040;
-    box-shadow: 0 0 1px 1px #555,inset 0 1px 0 0 #666;     
+    box-shadow: 0 0 1px 1px #555,inset 0 1px 0 0 #666;
+    margin-right: 20px;     
 }
 .navbtn-hover, .navbtn:active {
     color: #222;
@@ -321,7 +322,7 @@ var drawMouse = function() {
 <div id="page">
     <div class="header">
     <a id="new" class="navbtn" onclick="newCanvas()">New</a>
-    <a id="save" class="navbtn" onclick="saveImage()">Save</a>
+    <a id="save" class="navbtn" onclick="saveImage(); newCanvas();">Save</a>
         <div class="title">Lines</div>
         <p>The user count in my nodejs application is: <%= userCount %></p>
 		<p>The user by two count in my nodejs application is: <%= userbytwo %></p>
