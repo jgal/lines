@@ -30,9 +30,6 @@ var ibmdb = require('ibm_db');
 	var query = "select collaboration, position, picture from Images ORDER BY collaboration, position";
 	var rows = conn.querySync(query);
 	console.log(rows);
-	query = "insert into images (collaboration, position) values (1, 10);";
-	rows = conn.querySync(query);
-	console.log(rows);
 		conn.close(function() {
 			console.log('done');
 		});
