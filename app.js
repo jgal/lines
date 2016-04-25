@@ -37,11 +37,17 @@ var ibmdb = require('ibm_db');
 });
 
 //parse the results of the query
-
+app.get('/',function(request,response) {
+    console.log("User visited home page!");
+});
 
 // start server on the specified port and binding host
 app.listen(appEnv.port, '0.0.0.0', function() {
 
 	// print a message when the server starts listening
   console.log("server starting on " + appEnv.url);
+  
 });
+
+
+
