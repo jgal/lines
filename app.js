@@ -39,8 +39,8 @@ var ibmdb = require('ibm_db');
 
 
 //parse the results of the query
-app.get("/", function(req, res){
-    res.render("index", { name: "example" });
+app.get('/', function(req, res){
+  res.send('hello world');
 });
 
 // start server on the specified port and binding host
