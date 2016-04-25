@@ -46,8 +46,7 @@ var userbytwo = 0; /* added var definition for userbytwo here */
 app.listen(appEnv.port, '0.0.0.0', function() {
 
 	// print a message when the server starts listening
-  console.log("server starting on " + appEnv.url);
-  console.log(userCount);
+	  console.log(userCount);
 app.get('/', function(req, res){
   userCount = userCount + 1;
   /* add statement to increment userbytwo by two here */
@@ -55,6 +54,8 @@ app.get('/', function(req, res){
   res.render('index', {userCount: userCount, userbytwo: userbytwo});
  /* updated this line */
 });
+  console.log("server starting on " + appEnv.url);
+
   
 });
 
