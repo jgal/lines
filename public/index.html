@@ -224,27 +224,17 @@ function saveImage() {
       else {
         num++;
       }
-      var ibmdb = require('ibm_db');
-      var cn = "DRIVER={DB2};DATABASE=SQLDB;HOSTNAME=75.126.155.153;UID=user04848;PWD=hjC8gSiSTzR1;PORT=50000;PROTOCOL=TCPIP";
-	  ibmdb.open(cn,function(err,conn){
-  conn.prepare("insert into Images (collaboration, position, image) VALUES (?, ?, ?)", function (err, stmt) {
-    if (err) {
-      //could not prepare for some reason 
-      console.log(err);
-      return conn.closeSync();
-    }
- 	console.log("check1");
-    //Bind and Execute the statment asynchronously 
-    stmt.execute([1, 10, img.src], function (err, result) {
-      if( err )  console.log(err);  
-      else result.closeSync();
- 
-      //Close the connection 
-	  conn.close(function(err){
-	  	if (err) console.log(err);
-	  });
-    });
-  });
+var ibmdb = require('ibm_db');
+	ibmdb.open("DRIVER={DB2};DATABASE=SQLDB;HOSTNAME=75.126.155.153;UID=user04848;PWD=hjC8gSiSTzR1;PORT=50000;PROTOCOL=TCPIP", function (err,conn) {
+	if (err) console.log(err);
+	//collect the collaborations from the database
+	var query = "insert into images (collaboration,position,picture) values (1,10," + img.src + ");";
+	var rows = conn.querySync(query);
+	console.log(rows);
+		conn.close(function() {
+			console.log('done');
+		});
+
 });
 
 }
