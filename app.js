@@ -36,10 +36,9 @@ var ibmdb = require('ibm_db');
 
 });
 
+
 //parse the results of the query
-app.get('/',function(request,response) {
-    console.log("User visited home page!");
-});
+
 
 // start server on the specified port and binding host
 app.listen(appEnv.port, '0.0.0.0', function() {
@@ -47,6 +46,18 @@ app.listen(appEnv.port, '0.0.0.0', function() {
 	// print a message when the server starts listening
   console.log("server starting on " + appEnv.url);
   
+});
+
+//count users
+var userCount = 0;
+var userbytwo = 0; /* added var definition for userbytwo here */
+
+app.get('/', function(req, res){
+  userCount = userCount + 1;
+  /* add statement to increment userbytwo by two here */
+  userbytwo = userbytwo + 2;
+  res.render('index', {userCount: userCount, userbytwo: userbytwo});
+ /* updated this line */
 });
 
 

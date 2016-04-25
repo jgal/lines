@@ -224,7 +224,7 @@ function saveImage() {
       else {
         num++;
       }
-      var ibmdb = require('ibm_db');
+      /*var ibmdb = require('ibm_db');
       var cn = "DRIVER={DB2};DATABASE=SQLDB;HOSTNAME=75.126.155.153;UID=user04848;PWD=hjC8gSiSTzR1;PORT=50000;PROTOCOL=TCPIP";
 	  ibmdb.open(cn,function(err,conn){
   conn.prepare("insert into Images (collaboration, position, image) VALUES (?, ?, ?)", function (err, stmt) {
@@ -245,7 +245,8 @@ function saveImage() {
 	  });
     });
   });
-});
+});*/
+		
 
 }
 
@@ -322,6 +323,8 @@ var drawMouse = function() {
     <a id="new" class="navbtn" onclick="newCanvas()">New</a>
     <a id="save" class="navbtn" onclick="saveImage()">Save</a>
         <div class="title">Lines</div>
+        <p>The user count in my nodejs application is: <%= userCount %></p>
+		<p>The user by two count in my nodejs application is: <%= userbytwo %></p>
     </div>
     <div id="content"><p style="text-align:left">Loading canvas ... </p></div>
     <div id="content2">
