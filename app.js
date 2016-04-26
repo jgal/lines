@@ -22,6 +22,8 @@ var request = require('request');
 // Provides access to SQL database
 var ibmdb = require('ibm_db');
 
+var collab = 0;
+
 // Parses request body
 var bodyParser = require('body-parser');
 
@@ -33,26 +35,49 @@ app.use(express.static(__dirname + '/public'));
 
 //database connections
 var connString = "DRIVER={DB2};DATABASE=SQLDB;HOSTNAME=75.126.155.153;UID=user04848;PWD=hjC8gSiSTzR1;PORT=50000;PROTOCOL=TCPIP";
+//var collabCount = 0;
+//var posCount = 1;
+//delete all contents of database upon server creation
+/*ibmdb.open(connString, function(err,conn) {
+	var queryStringDelete = "DELETE FROM IMAGE;";
+	conn.query(queryStringDelete, function(err, rows, moreResultSets) {
+		conn.close(function() {
+			console.log(rows);
+		});
+	});
+});*/
 
 app.post('/save', function(req, res) {
+	console.log("Request made to save an image");
 	ibmdb.open(connString, function(err, conn) {
 		if (err) {
+			console.log("error there");
 			res.json({ success: false });
 		}
 		else {
-			var queryStringInsert = "INSERT INTO IMAGES (collaboration, position) VALUES ('" +
-												req.body.collab + "', '" + req.body.pos + "')";
-
+			//if this is the first postion, then it is a new collaboration
+			var queryStringInsert = "INSERT INTO IMAGE (collaboration, position, picture) VALUES ('" +
+												1 + "', '" + req.body.pos + "', '" + req.body.pic + "');";
+			if (collab === 0) {
+				if (req.body.pos === 9) {
+					collab = 1;
+				}
+			}
+			else {
+				queryStringInsert = "UPDATE IMAGE SET picture='" + req.body.pic + "' WHERE collaboration=1 AND position=" + req.body.pos + ";";
+			}
+			//console.log(queryStringInsert);
 			conn.query(queryStringInsert, function(err, rows, moreResultSets) {
 				if (err) {
 					res.json({ success: false });
 				}
 				else {
 					//var queryString = "SELECT Username, Score FROM Highscores ORDER BY Score DESC LIMIT 5";
-					var queryStringSelect = "SELECT collaboration, position FROM IMAGES ORDER BY collaboration DESC FETCH FIRST 5 ROWS ONLY";
-
+					var queryStringSelect = "SELECT picture FROM IMAGE WHERE collaboration=1 ORDER BY position;";
+					console.log(queryStringSelect);
 					conn.query(queryStringSelect, function(err, rows, moreResultSets) {
 						if (err) {
+							console.log("error here");
 							res.json({ success: false });
 						}
 						else {

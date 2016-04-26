@@ -1,6 +1,5 @@
 var ctx, color = "#000";  
 var num = 1;
-
 document.addEventListener( "DOMContentLoaded", function(){
   // setup a new canvas for drawing wait for device init
     setTimeout(function(){
@@ -41,12 +40,12 @@ function saveImage() {
 
       document.getElementById(num).appendChild(img); 
       var data = {};
-      data.collab = 3;
+      data.pic = dataURL;
       data.pos = num;
-	//try {
+	try {
           $.ajax({
             type: 'POST',
-            url: document.URL + 'save',
+            url: '/save',
             data: JSON.stringify(data),
             contentType: 'application/json',
             success: function(result) {
@@ -55,14 +54,12 @@ function saveImage() {
               //console.log(result);
           }
       });
-       // } catch (e) {
-
-        //}
-
-      if(num === 9) {num = 1;}
-      else {
+        } catch (e) {
+			;
+        }
         num++;
-      }
+        if (num === 10) num = 1;
+
 }
 
 // prototype to start drawing on touch using canvas moveTo and lineTo
