@@ -22,7 +22,7 @@ other drawings that have been collected.
 Tools we will be using:
 
 We will be using IMB Bluemix to host our server, and we will use their
-microservice MongoDB as our database to store the collected drawings.
-We are planning on using AngularJS as our HTML5 framework. 
+microservice SQL as our database to store the collected drawings.
+We are planning on using NodeJS as our HTML5 framework. 
 
 Modified last: Wed 4:18 PM
