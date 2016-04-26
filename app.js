@@ -22,7 +22,7 @@ var app = express();
 app.use(express.static(__dirname + '/public'));
 //app.set('views', __dirname + '/public')
 
-var name = "A TITLE";
+
 
 
 
@@ -36,6 +36,14 @@ ibmdb = require('ibm_db');
 	ibmdb.open(connString, function (err,conn) {
 	if (err) console.log(err);
 	//collect the collaborations from the database
+	var query = "insert into images (collaboration, position) values (1, 11);";
+	var rows = conn.querySync(query);
+		conn.close(function() {
+			console.log(rows);
+		});
+	/*ibmdb.open(connString, function (err,conn) {
+	if (err) console.log(err);
+	//collect the collaborations from the database
 	var query = "select collaboration, position, picture from Images ORDER BY collaboration, position";
 	var rows = conn.querySync(query);
 	console.log(rows);
@@ -43,7 +51,7 @@ ibmdb = require('ibm_db');
 			console.log('done');
 		});
 
-});
+});*/
 
 /*app.get('/', function(request, response) {
   response.render('index', {name: name, ibmdb: ibmdb});
