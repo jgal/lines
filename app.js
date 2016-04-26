@@ -61,7 +61,7 @@ var appEnv = cfenv.getAppEnv();
 var name2 = "didn't break?"
 
 app.get('/', function(request, response) {
-  response.render('index', {name: name2});
+  response.render('new-index', {name: name2});
   //response.send("whyy")	
 
 
