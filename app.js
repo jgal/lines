@@ -23,15 +23,8 @@ app.set('views', __dirname + '/public')
 
 var name = "A TITLE"
 
-app.get('/', function(request, response) {
-  response.render('index', {name: name});
-  //response.send("whyy")
-});
 
-app.get('/dummy', function(request, response) {
-  response.render('dummy', {name: name});
-  //response.send("whyy")
-});
+
 
 // get the app environment from Cloud Foundry
 var appEnv = cfenv.getAppEnv();
@@ -51,10 +44,15 @@ var ibmdb = require('ibm_db');
 
 });
 
+app.get('/', function(request, response) {
+  response.render('index', {name: name, ibmdb: ibmdb});
+  //response.send("whyy")
+});
 
-//parse the results of the query
-app.get('/', function(req, res){
-  res.send('hello world');
+
+app.get('/dummy', function(request, response) {
+  response.render('dummy', {name: name});
+  //response.send("whyy")
 });
 
 // start server on the specified port and binding host
