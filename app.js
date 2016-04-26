@@ -80,6 +80,10 @@ var name = "didn't break?"
 app.get('/', function(request, response) {
   response.render('index', {name: name});
   //response.send("whyy")	
+  client.incrby("number", 1, function (err, num) {
+        res.render('index', {name: name, number: num}); 
+    });
+
 });
 
 app.get('/dummy', function(request, response) {
