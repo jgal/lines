@@ -21,10 +21,10 @@ app.set('view engine', 'ejs');
 //app.use(express.static(__dirname + '/public'));
 app.set('views', __dirname + '/public')
 
-var name = "yoooo"
+var name = "A TITLE"
 
 app.get('/', function(request, response) {
-  response.render('index');
+  response.render('index', {name: name});
   //response.send("whyy")
 });
 
