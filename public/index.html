@@ -203,7 +203,7 @@ function saveImage() {
 	var ibmdb;
 	exports.route = function(req, res){
     	ibmdb = req.app.locals.ibmdb;
-	}
+	};
 	ibmdb.open(connString);
 	/*	
 		if (err)  ;
@@ -279,7 +279,7 @@ var drawMouse = function() {
       ctx.stroke();
     }
   };
-  var stop = function(e) {
+  var stop = function() {
     clicked = 0;
   };
     document.getElementById("canvas").addEventListener("mousedown", start, false);
