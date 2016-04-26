@@ -22,7 +22,7 @@ app.use(express.static(__dirname + '/public'));
 
 app.get('/dumb', function(request, response) {
   //response.render('dummy');
-  response.send("whyy");
+  response.send("whyy")
 });
 
 // get the app environment from Cloud Foundry
