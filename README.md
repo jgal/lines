@@ -25,4 +25,4 @@ We will be using IMB Bluemix to host our server, and we will use their
 microservice SQL as our database to store the collected drawings.
 We are planning on using NodeJS as our HTML5 framework. 
 
-Modified last: Wed 4:18 PM
+Modified last: Tuesday 4:18 AM
