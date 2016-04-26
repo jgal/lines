@@ -6,6 +6,7 @@
 
 // This application uses express as its web server
 // for more info, see: http://expressjs.com
+/*globals ibmdb:true */
 var express = require('express');
 
 // cfenv provides access to your Cloud Foundry environment
@@ -31,7 +32,7 @@ var appEnv = cfenv.getAppEnv();
 
 var connString = "DRIVER={DB2};DATABASE=SQLDB;HOSTNAME=75.126.155.153;UID=user04848;PWD=hjC8gSiSTzR1;PORT=50000;PROTOCOL=TCPIP";
 //connect to the database
-var ibmdb = require('ibm_db');
+ibmdb = require('ibm_db');
 	ibmdb.open(connString, function (err,conn) {
 	if (err) console.log(err);
 	//collect the collaborations from the database
