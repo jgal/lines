@@ -16,9 +16,8 @@ var cfenv = require('cfenv');
 var app = express();
 
 // serve the files out of ./public as our main files
-//app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/public'));
 
-app.set('views', __dirname + '/public');
 app.set('view engine', 'ejs');
 
 
