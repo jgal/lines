@@ -1,6 +1,8 @@
 {
 	"name": "Lines",
 	"version": "0.0.1",
+	"description": "Drawing and stuff",
+	"main": "app.js",
     "private": true,
 	"scripts": {
 		"start": "node app.js"
@@ -8,10 +10,13 @@
 	"dependencies": {
 		"express": "4.13.x",
 		"cfenv": "1.0.x",
-		"ibm_db": "0.0.19"
+		"ibm_db": "0.0.19",
 		"ejs": "2.4.1"	
 },
-	"repository": {},
+	"repository": {
+	"type": "git",
+	"url": "https://github.com/jgal/lines"
+	},
 	"engines": {
 		"node": "4.2.x"
 	} 
