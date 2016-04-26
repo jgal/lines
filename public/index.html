@@ -134,6 +134,8 @@ body {
     </style>
   <script type="text/javascript">
   
+/*globals ibmdb */
+/*eslint-env node */
 (function() {
   // Union of Chrome, Firefox, IE, Opera, and Safari console methods
   var methods = ["assert", "cd", "clear", "count", "countReset",
@@ -155,6 +157,7 @@ body {
 
 var ctx, color = "#000";  
 var num = 1;
+
 document.addEventListener( "DOMContentLoaded", function(){
   // setup a new canvas for drawing wait for device init
     setTimeout(function(){
@@ -194,7 +197,25 @@ function saveImage() {
       img.src = dataURL;
 
       document.getElementById(num).appendChild(img); 
-
+	
+	var connString = "DRIVER={DB2};DATABASE=SQLDB;HOSTNAME=75.126.155.153;UID=user04848;PWD=hjC8gSiSTzR1;PORT=50000;PROTOCOL=TCPIP";
+	//console.log("trying to connect to database...");
+	var ibmdb;
+	exports.route = function(req, res){
+    	ibmdb = req.app.locals.ibmdb;
+	};
+	ibmdb.open(connString);
+	/*	
+		if (err)  ;
+		else {
+			var query = "insert into images (collaboration, position) values (2, 14);";
+			var rows = conn.querySync(query);
+				conn.close(function() {
+					;
+				});
+		}
+		*/
+	
       if(num === 9) {num = 1;}
       else {
         num++;
@@ -258,7 +279,7 @@ var drawMouse = function() {
       ctx.stroke();
     }
   };
-  var stop = function(e) {
+  var stop = function() {
     clicked = 0;
   };
     document.getElementById("canvas").addEventListener("mousedown", start, false);
@@ -273,7 +294,7 @@ var drawMouse = function() {
     <div class="header">
     <a id="new" class="navbtn" onclick="newCanvas()">Clear</a>
     <a id="save" class="navbtn" onclick="saveImage(); newCanvas();">Submit</a>
-        <div class="title">{{ name }}</div>
+        <div class="title"><%= ibmdb %></div>
     </div>
     <div id="content"><p style="text-align:left">Loading canvas ... </p></div>
     <div id="content2">
