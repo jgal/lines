@@ -69,7 +69,7 @@ app.get('/', function(request, response) {
 });
 
 app.get('/dummy', function(request, response) {
-  response.render('dummy', {name: name});
+  response.render('dummy', {name2: name});
   //response.send("whyy")
 });
 
