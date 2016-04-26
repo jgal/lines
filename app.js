@@ -14,7 +14,7 @@ var redis = require('redis');
 
 if (process.env.VCAP_SERVICES) {
   var env = JSON.parse(process.env.VCAP_SERVICES);
-  var credentials = env['redis-2.6'][0]['credentials'];
+  var credentials = env['redis01'][0]['credentials'];
 } else {
   var credentials = {"host":"127.0.0.1", "port":5556, "username":"user1",
     "password":"secret"}
