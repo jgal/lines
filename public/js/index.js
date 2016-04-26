@@ -40,11 +40,25 @@ function saveImage() {
       img.src = dataURL;
 
       document.getElementById(num).appendChild(img); 
-	$.post('/',{collab: 1, pos: num, url: dataURL}, function(data){
-	
-		console.log(data);
-		
-	});	
+      var data = {};
+      data.collab = 3;
+      data.pos = num;
+	try {
+          $.ajax({
+            type: 'POST',
+            url: document.URL + 'save',
+            data: JSON.stringify(data),
+            contentType: 'application/json',
+            success: function(result) {
+               var random = result;
+              //console.log('Posted Score to database.');
+              //console.log(result);
+          }
+      });
+        } catch (e) {
+
+        }
+
       if(num === 9) {num = 1;}
       else {
         num++;

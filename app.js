@@ -8,32 +8,69 @@
 // for more info, see: http://expressjs.com
 /*globals ibmdb:true */
 var express = require('express');
-var routes = require('./routes');
-var http = require('http');
-var path = require('path');
+
+// cfenv provides access to your Cloud Foundry environment
+// for more info, see: https://www.npmjs.com/package/cfenv
+var cfenv = require('cfenv');
+
+// Get the app environment from Cloud Foundry
+var appEnv = cfenv.getAppEnv();
+
+// Provides http requests
+//var request = require('request');
+
+// Provides access to SQL database
 var ibmdb = require('ibm_db');
 
-var app = express();
+// Parses request body
+var bodyParser = require('body-parser');
 
-app.set('port', process.env.PORT || 3000);
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
-app.use(express.favicon());
-app.use(express.logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded());
-app.use(express.methodOverride());
-app.use(express.cookieParser('your secret here'));
-app.use(express.session());
-app.use(app.router);
-app.use(express.static(path.join(__dirname, 'public')));
+// Create a new express server
+var app = express();
+app.use(bodyParser.json());
+// Serve the files out of ./public as our main files
+app.use(express.static(__dirname + '/public'));
+
+//database connections
 var connString = "DRIVER={DB2};DATABASE=SQLDB;HOSTNAME=75.126.155.153;UID=user04848;PWD=hjC8gSiSTzR1;PORT=50000;PROTOCOL=TCPIP";
 
-app.post('/', routes.insert(ibmdb, connString));
+app.post('/save', function(req, res) {
+	ibmdb.open(connString, function(err, conn) {
+		if (err) {
+			res.json({ success: false });
+		}
+		else {
+			var queryStringInsert = "INSERT INTO IMAGES (collaboration, position) VALUES ('" +
+												req.body.collab + "', '" + req.body.pos + "')";
+
+			conn.query(queryStringInsert, function(err, rows, moreResultSets) {
+				if (err) {
+					res.json({ success: false });
+				}
+				else {
+					//var queryString = "SELECT Username, Score FROM Highscores ORDER BY Score DESC LIMIT 5";
+					var queryStringSelect = "SELECT collaboration, position FROM IMAGES ORDER BY collaboration DESC FETCH FIRST 5 ROWS ONLY";
+
+					conn.query(queryStringSelect, function(err, rows, moreResultSets) {
+						if (err) {
+							res.json({ success: false });
+						}
+						else {
+							conn.close(function() {
+								console.log(rows);
+								res.json({ data: rows, success: true });
+							});
+						}
+					});
+				}
+			});
+		}
+	});
+});
 
 // start server on the specified port and binding host
-http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
+app.listen(appEnv.port, '0.0.0.0', function() {
+  console.log("server starting on " + appEnv.url);
 });
 
 
