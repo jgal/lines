@@ -19,7 +19,7 @@ var app = express();
 app.set('view engine', 'ejs');
 
 // serve the files out of ./public as our main files
-app.use(express.static(__dirname + '/public'));
+//app.use(express.static(__dirname + '/public'));
 app.set('views', __dirname + '/public')
 
 
