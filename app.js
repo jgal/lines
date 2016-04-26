@@ -23,6 +23,11 @@ app.set('views', __dirname + '/public')
 
 var name = "yoooo"
 
+app.get('/', function(request, response) {
+  response.render('index');
+  //response.send("whyy")
+});
+
 app.get('/dummy', function(request, response) {
   response.render('dummy', {name: name});
   //response.send("whyy")
