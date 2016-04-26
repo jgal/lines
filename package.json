@@ -12,7 +12,6 @@
 		"cfenv": "1.0.x",
 		"ibm_db": "0.0.19",
 		"ejs": "2.4.1",
-		"redis": "*"
 },
 	"repository": {
 	"type": "git",
