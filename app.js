@@ -35,17 +35,7 @@ app.use(express.static(__dirname + '/public'));
 
 //database connections
 var connString = "DRIVER={DB2};DATABASE=SQLDB;HOSTNAME=75.126.155.153;UID=user04848;PWD=hjC8gSiSTzR1;PORT=50000;PROTOCOL=TCPIP";
-//var collabCount = 0;
-//var posCount = 1;
-//delete all contents of database upon server creation
-/*ibmdb.open(connString, function(err,conn) {
-	var queryStringDelete = "DELETE FROM IMAGE;";
-	conn.query(queryStringDelete, function(err, rows, moreResultSets) {
-		conn.close(function() {
-			console.log(rows);
-		});
-	});
-});*/
+
 
 app.post('/save', function(req, res) {
 	console.log("Request made to save an image");
