@@ -18,11 +18,12 @@ var app = express();
 app.set('view engine', 'ejs');
 
 // serve the files out of ./public as our main files
-app.use(express.static(__dirname + '/public'));
+//app.use(express.static(__dirname + '/public'));
+app.set('views', __dirname + '/views')
 
-app.get('/dumb', function(request, response) {
-  //response.render('dummy');
-  response.send("whyy")
+app.get('/', function(request, response) {
+  response.render('dummy');
+  //response.send("whyy")
 });
 
 // get the app environment from Cloud Foundry
