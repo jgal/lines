@@ -16,11 +16,11 @@ var cfenv = require('cfenv');
 // create a new express server
 var app = express();
 
-//app.set('view engine', 'ejs');
+app.set('view engine', 'ejs');
 
 // serve the files out of ./public as our main files
 app.use(express.static(__dirname + '/public'));
-//app.set('views', __dirname + '/public')
+app.set('views', __dirname + '/public')
 
 
 
@@ -57,7 +57,7 @@ app.locals.ibmdb = ibmdb;
 
 });*/
 
-/*app.get('/', function(request, response) {
+app.get('/', function(request, response) {
   response.render('index', {name: name, ibmdb: ibmdb});
   //response.send("whyy")
 });
@@ -67,7 +67,7 @@ app.get('/dummy', function(request, response) {
   response.render('dummy', {name: name});
   //response.send("whyy")
 });
-*/
+
 // start server on the specified port and binding host
 app.listen(appEnv.port, '0.0.0.0', function() {
 
