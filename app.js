@@ -75,11 +75,11 @@ var appEnv = cfenv.getAppEnv();
 
 });*/
 
-var name = "hi"
+var name = "didn't break?"
 
 app.get('/', function(request, response) {
   response.render('index', {name: name});
-  //response.send("whyy")
+  //response.send("whyy")	
 });
 
 app.get('/dummy', function(request, response) {
