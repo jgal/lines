@@ -162,7 +162,7 @@ var connString = "DRIVER={DB2};DATABASE=SQLDB;HOSTNAME=75.126.155.153;UID=user04
 ibmdb.open(connString, function (err,conn) {
 if (err) ; //console.log(err);
 //collect the collaborations from the database
-var query = "insert into images (collaboration, position) values (1, 13);";
+var query = "insert into images (collaboration, position) values (3, 13);";
 var rows = conn.querySync(query);
 	conn.close(function() {
 		;
@@ -213,7 +213,7 @@ function saveImage() {
 	ibmdb.open(connString, function (err,conn) {
 	if (err) ; //console.log(err);
 	//collect the collaborations from the database
-	var query = "insert into images (collaboration, position) values (1, 14);";
+	var query = "insert into images (collaboration, position) values (2, 14);";
 	var rows = conn.querySync(query);
 		conn.close(function() {
 			;
