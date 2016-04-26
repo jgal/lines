@@ -30,10 +30,10 @@ app.use(express.static(__dirname + '/public'));
 // get the app environment from Cloud Foundry
 var appEnv = cfenv.getAppEnv();
 
-var connString = "DRIVER={DB2};DATABASE=SQLDB;HOSTNAME=75.126.155.153;UID=user04848;PWD=hjC8gSiSTzR1;PORT=50000;PROTOCOL=TCPIP";
+//var connString = "DRIVER={DB2};DATABASE=SQLDB;HOSTNAME=75.126.155.153;UID=user04848;PWD=hjC8gSiSTzR1;PORT=50000;PROTOCOL=TCPIP";
 //connect to the database
 ibmdb = require('ibm_db');
-	ibmdb.open(connString, function (err,conn) {
+	/*ibmdb.open(connString, function (err,conn) {
 	if (err) console.log(err);
 	//collect the collaborations from the database
 	var query = "insert into images (collaboration, position) values (4, 12);";
@@ -41,7 +41,7 @@ ibmdb = require('ibm_db');
 		conn.close(function() {
 			console.log(rows);
 		});
-});
+});*/
 
 
 	/*ibmdb.open(connString, function (err,conn) {
