@@ -32,8 +32,8 @@ var appEnv = cfenv.getAppEnv();
 
 //var connString = "DRIVER={DB2};DATABASE=SQLDB;HOSTNAME=75.126.155.153;UID=user04848;PWD=hjC8gSiSTzR1;PORT=50000;PROTOCOL=TCPIP";
 //connect to the database
-ibmdb = require('ibm_db');
-app.locals.ibmdb = ibmdb;
+//ibmdb = require('ibm_db');
+//app.locals.ibmdb = ibmdb;
 	/*ibmdb.open(connString, function (err,conn) {
 	if (err) console.log(err);
 	//collect the collaborations from the database
@@ -57,11 +57,12 @@ app.locals.ibmdb = ibmdb;
 
 });*/
 
+var name = "hi"
+
 app.get('/', function(request, response) {
-  response.render('index', {name: name, ibmdb: ibmdb});
+  response.render('index', {name: name});
   //response.send("whyy")
 });
-
 
 app.get('/dummy', function(request, response) {
   response.render('dummy', {name: name});
