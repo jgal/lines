@@ -21,8 +21,10 @@ app.set('view engine', 'ejs');
 //app.use(express.static(__dirname + '/public'));
 app.set('views', __dirname + '/public')
 
+var name = "yoooo"
+
 app.get('/dummy', function(request, response) {
-  response.render('dummy');
+  response.render('dummy', {name: name});
   //response.send("whyy")
 });
 
