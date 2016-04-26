@@ -8,72 +8,30 @@
 // for more info, see: http://expressjs.com
 /*globals ibmdb:true */
 var express = require('express');
+var routes = require('./routes');
+var http = require('http');
+var path = require('path');
+var ibmdb = require('ibm_db');
 
-// cfenv provides access to your Cloud Foundry environment
-// for more info, see: https://www.npmjs.com/package/cfenv
-var cfenv = require('cfenv');
+app.set('port', process.env.PORT || 3000);
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+app.use(express.favicon());
+app.use(express.logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded());
+app.use(express.methodOverride());
+app.use(express.cookieParser('your secret here'));
+app.use(express.session());
+app.use(app.router);
+app.use(express.static(path.join(__dirname, 'public')));
+var connString = "DRIVER={DB2};DATABASE=SQLDB;HOSTNAME=75.126.155.153;UID=user04848;PWD=hjC8gSiSTzR1;PORT=50000;PROTOCOL=TCPIP";
 
-// create a new express server
-var app = express();
+app.post('/', routes.insert(ibmdb, connString));
 
-//app.set('view engine', 'ejs');
-
-// serve the files out of ./public as our main files
-app.use(express.static(__dirname + '/public'));
-//app.set('views', __dirname + '/public')
-
-
-
-
-
-
-// get the app environment from Cloud Foundry
-var appEnv = cfenv.getAppEnv();
-
-//var connString = "DRIVER={DB2};DATABASE=SQLDB;HOSTNAME=75.126.155.153;UID=user04848;PWD=hjC8gSiSTzR1;PORT=50000;PROTOCOL=TCPIP";
-//connect to the database
-ibmdb = require('ibm_db');
-app.locals.ibmdb = ibmdb;
-	/*ibmdb.open(connString, function (err,conn) {
-	if (err) console.log(err);
-	//collect the collaborations from the database
-	var query = "insert into images (collaboration, position) values (4, 12);";
-	var rows = conn.querySync(query);
-		conn.close(function() {
-			console.log(rows);
-		});
-});*/
-
-
-	/*ibmdb.open(connString, function (err,conn) {
-	if (err) console.log(err);
-	//collect the collaborations from the database
-	var query = "select collaboration, position, picture from Images ORDER BY collaboration, position";
-	var rows = conn.querySync(query);
-	console.log(rows);
-		conn.close(function() {
-			console.log('done');
-		});
-
-});*/
-
-/*app.get('/', function(request, response) {
-  response.render('index', {name: name, ibmdb: ibmdb});
-  //response.send("whyy")
-});
-
-
-app.get('/dummy', function(request, response) {
-  response.render('dummy', {name: name});
-  //response.send("whyy")
-});
-*/
 // start server on the specified port and binding host
-app.listen(appEnv.port, '0.0.0.0', function() {
-
-	// print a message when the server starts listening
-
-  console.log("server starting on " + appEnv.url);
+http.createServer(app).listen(app.get('port'), function(){
+  console.log('Express server listening on port ' + app.get('port'));
 });
 
 
