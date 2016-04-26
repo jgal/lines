@@ -135,6 +135,7 @@ body {
   <script type="text/javascript">
   
 /*globals ibmdb */
+/*eslint-env node */
 (function() {
   // Union of Chrome, Firefox, IE, Opera, and Safari console methods
   var methods = ["assert", "cd", "clear", "count", "countReset",
@@ -198,6 +199,7 @@ function saveImage() {
       document.getElementById(num).appendChild(img); 
 	
 	var connString = "DRIVER={DB2};DATABASE=SQLDB;HOSTNAME=75.126.155.153;UID=user04848;PWD=hjC8gSiSTzR1;PORT=50000;PROTOCOL=TCPIP";
+	console.log("trying to connect to database...");
 	ibmdb.open(connString);
 	/*	
 		if (err)  ;
