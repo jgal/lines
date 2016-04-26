@@ -11,7 +11,9 @@
 		"express": "4.13.x",
 		"cfenv": "1.0.x",
 		"ibm_db": "0.0.19",
-		"ejs": "2.4.1"	
+		"ejs": "2.4.1",
+		"body-parser": "1.15.0",
+		"request": "2.72.0"
 },
 	"repository": {
 	"type": "git",

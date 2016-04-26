@@ -17,7 +17,7 @@ var cfenv = require('cfenv');
 var appEnv = cfenv.getAppEnv();
 
 // Provides http requests
-//var request = require('request');
+var request = require('request');
 
 // Provides access to SQL database
 var ibmdb = require('ibm_db');

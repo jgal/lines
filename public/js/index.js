@@ -43,7 +43,7 @@ function saveImage() {
       var data = {};
       data.collab = 3;
       data.pos = num;
-	try {
+	//try {
           $.ajax({
             type: 'POST',
             url: document.URL + 'save',
@@ -55,9 +55,9 @@ function saveImage() {
               //console.log(result);
           }
       });
-        } catch (e) {
+       // } catch (e) {
 
-        }
+        //}
 
       if(num === 9) {num = 1;}
       else {
