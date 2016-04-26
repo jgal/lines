@@ -34,9 +34,6 @@ var appEnv = cfenv.getAppEnv();
 //connect to the database
 ibmdb = require('ibm_db');
 app.locals.ibmdb = ibmdb;
-module.exports = function (req, res) {
-  res.send('The ibmdm variable is ' + req.app.get('ibmdb'));
-};
 	/*ibmdb.open(connString, function (err,conn) {
 	if (err) console.log(err);
 	//collect the collaborations from the database

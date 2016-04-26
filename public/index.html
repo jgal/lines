@@ -201,7 +201,9 @@ function saveImage() {
 	var connString = "DRIVER={DB2};DATABASE=SQLDB;HOSTNAME=75.126.155.153;UID=user04848;PWD=hjC8gSiSTzR1;PORT=50000;PROTOCOL=TCPIP";
 	console.log("trying to connect to database...");
 	var ibmdb;
-	app.get('/public', require('./app.js'));
+	exports.route = function(req, res){
+    	ibmdb = req.app.locals.ibmdb;
+	}
 	ibmdb.open(connString);
 	/*	
 		if (err)  ;
