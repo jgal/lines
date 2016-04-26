@@ -37,9 +37,9 @@ ibmdb = require('ibm_db');
 	if (err) console.log(err);
 	//collect the collaborations from the database
 	var query = "insert into images (collaboration, position) values (1, 11);";
-	var rows = conn.querySync(query);
+	//var rows = conn.querySync(query);
 		conn.close(function() {
-			console.log(rows);
+			console.log("done");
 		});
 	/*ibmdb.open(connString, function (err,conn) {
 	if (err) console.log(err);
