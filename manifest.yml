@@ -7,8 +7,4 @@ applications:
   host: lines
   disk_quota: 1024M
   services:
-    redis01:
-      label: redis
-      provider: core
-      version: '2.6'
-      plan: 100 
+    - redis01
