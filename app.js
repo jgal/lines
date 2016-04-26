@@ -58,10 +58,10 @@ var appEnv = cfenv.getAppEnv();
 
 });*/
 
-var name2 = "didn't break?"
+var name = "didn't break?"
 
 app.get('/', function(request, response) {
-  response.render('new-index', {name: name2});
+  response.render('new-index', {name: name});
   //response.send("whyy")	
 
 
@@ -69,7 +69,7 @@ app.get('/', function(request, response) {
 });
 
 app.get('/dummy', function(request, response) {
-  response.render('dummy', {name: name2});
+  response.render('dummy', {name: name});
   //response.send("whyy")
 });
 
