@@ -6,3 +6,9 @@ applications:
   name: lines
   host: lines
   disk_quota: 1024M
+  services:
+    redis-5a659:
+      label: redis
+      provider: core
+      version: '2.6'
+      plan: 100 

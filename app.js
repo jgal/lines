@@ -8,6 +8,17 @@
 // for more info, see: http://expressjs.com
 /*globals ibmdb:true */
 var express = require('express');
+var redis = require('redis');
+
+//initial setup
+
+if (process.env.VCAP_SERVICES) {
+  var env = JSON.parse(process.env.VCAP_SERVICES);
+  var credentials = env['redis-2.6'][0]['credentials'];
+} else {
+  var credentials = {"host":"127.0.0.1", "port":5556, "username":"user1",
+    "password":"secret"}
+}
 
 // cfenv provides access to your Cloud Foundry environment
 // for more info, see: https://www.npmjs.com/package/cfenv
@@ -23,6 +34,13 @@ app.set('view engine', 'ejs');
 app.set('views', __dirname + '/public')
 
 
+var client = redis.createClient(credentials.port, credentials.host);
+if (credentials.password != '') {
+    client.auth(credentials.password);
+}
+client.on("error", function (err) {
+        console.log("Error " + err);
+});
 
 
 
